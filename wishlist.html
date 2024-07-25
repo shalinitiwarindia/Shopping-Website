@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+  <style>
+    #wishlistContainer{
+        display: flex;
+    }
+    h2{
+        background-color: blueviolet;
+        color: white;
+        justify-content: center;
+        text-align: center;
+        padding-top: 30px;
+        height: 50px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+#btn{
+  background-color: lightskyblue;
+  border: 2px solid black;
+  border-radius: 7px;
+  display: flex;
+  
+ 
+  
+}
+button{
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  
+}
+ .imageBox img {
+height: 100px;
+width: 100px;
+}
+#wishlistContainer{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: repeat(2,1fr);
+}
+</style>
+ 
+</head>
+<body>
+  <h2>Your Wishlist</h2><br>
+  <p></p>
+  <div id="wishlistContainer"></div>
+  
+  <script>
+    var wishlistData = JSON.parse(localStorage.getItem("wishlist")) || [];
+    var total=wishlistData.reduce(function(sum,elem){
+      return sum+Number(elem.price);
+    },0)
+    console.log(total);
+    var length=wishlistData.length;
+    console.log(length);
+    document.querySelector("p").innerText=`The total of ${length} item is Rs.${total}`
+    function displayWishlist() {
+      document.querySelector("#wishlistContainer").innerText = "";
+      wishlistData.forEach(function (elem,index) {
+        if (elem.image_url && elem.name && elem.price) {
+          var box = document.createElement("div");
+          var imageBox = document.createElement("div");
+          imageBox.className = "imageBox";
+
+          var img = document.createElement("img");
+          img.src = elem.image_url;
+          imageBox.append(img);
+
+          var name = document.createElement("p");
+          name.textContent = elem.name;
+
+          var price = document.createElement("p");
+          price.innerText = elem.price;
+
+          var btn=document.createElement("button");
+          btn.innerText="Remove";
+          btn.addEventListener("click",function(){
+          removeItem(elem,index)
+         });
+
+          box.append(imageBox, name, price,btn);
+          document.querySelector("#wishlistContainer").append(box);
+        }
+      });
+    }
+    function removeItem(elem,index){
+    console.log(elem,index);
+    wishlistData.splice(index,1);
+    localStorage.setItem("wishlist",JSON.stringify(wishlistData));
+    window.location.reload();
+  }
+    displayWishlist();
+    
+  </script>
+</body>
+</html>
