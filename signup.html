@@ -53,8 +53,49 @@ a {
 text-decoration: none;
 }
 
+#navbar a {
+cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div id="navbar">
+      <div><a href="men.html">Men</a></div>
+      <div><a href="women.html">Women</a></div>
+      <div><a href="signup.html">Signup</a></div>
+      <div><a href="login.html">Login</a></div>
+    </div>
+    
+    <div id="box">
+        <h1>Signup</h1>
+   
+        <div id="container">
+       <div><input id="user" type="text" placeholder="Enter your Name" /></div> 
+        <div><input id="contact" type="number" placeholder="Enter your Contact" /></div>
+        <div><input id="email" type="text" placeholder="Enter your Email" /></div>
+      <div><input id="pass" type="password" placeholder="Enter your Password" /></div>
+      </div>
+    <button>Submit</button>
+   
+</div>
+</body>
 
-
+</html>
+<script>
+  document.querySelector("button").addEventListener("click",Function);
+    var userData = JSON.parse(localStorage.getItem("userCreds"))||[];
+    function Function(){
+        // console.log("hii");
+        var userObj = {
+      userName: document.querySelector("#user").value,
+      contact: document.querySelector("#contact").value,
+      email: document.querySelector("#email").value,
+      password: document.querySelector("#pass").value,
+      
+    };
+    userData.push(userObj);
+    console.log(userData)
+    localStorage.setItem("userCreds",JSON.stringify(userData))
     window.location.href = "index.html";
   }
 </script>
