@@ -1,3 +1,7 @@
-This is a shopping website with having features like signup,login,viewing items,filtering items according to name as well as filtering by price.
-This website also contains add to cart button,wishlist and checkout button for payment for the products.
-This website is build by using html,css and js languages.
+
+
+
+
+ScreenShots:
+![image](https://github.com/user-attachments/assets/69c020ac-27c5-4b9d-8d49-a04813dbb967)
+
